@@ -497,9 +497,8 @@ This project is licensed under the MIT License - see the [LICENSE](https://claud
 
 ## 📚 Resources
 
-- [Yahboom Official Website](https://www.yahboom.com/)
-- [PySerial Documentation](https://pyserial.readthedocs.io/)
-- [Servo Motor Basics](https://en.wikipedia.org/wiki/Servo_motor)
+- https://www.yahboom.net/study/16-servo-ctrl
+- https://github.com/YahboomTechnology/16-channels-servo-debugging-board/tree/master
 
 ------
 
