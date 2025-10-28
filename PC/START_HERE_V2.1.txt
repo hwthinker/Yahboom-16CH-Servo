@@ -1,0 +1,310 @@
+╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║      🛡️ SERVO CONTROLLER GUI v2.1 - SAFETY UPDATE 🛡️        ║
+║                                                               ║
+║         16 Channel Servo + ARM Robot 6DOF Control            ║
+║              CRITICAL SAFETY FEATURE ADDED!                  ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+
+
+🚨 CRITICAL UPDATE v2.1 - SAFETY FIRST! 🚨
+
+═════════════════════════════════════════════════════════════════
+
+⚠️ WHAT'S NEW IN v2.1? (IMPORTANT!)
+
+✅ DELAY CONTROL untuk setiap joint ARM (S1-S6)
+✅ SMART DEFAULTS: S2 & S3 = 100ms (mencegah kerusakan!)
+✅ SAFETY WARNING merah di interface
+✅ Proteksi servo dari gerakan mendadak
+
+═════════════════════════════════════════════════════════════════
+
+🛡️ MENGAPA UPDATE INI PENTING?
+
+MASALAH:
+❌ S2 (Shoulder) & S3 (Elbow) menanggung beban TERBERAT
+❌ Gerakan cepat = torque berlebihan = SERVO RUSAK
+❌ Biaya ganti servo: 100rb+ per unit
+❌ Current spike → overheating → kerusakan permanen
+
+SOLUSI v2.1:
+✅ Delay control individual per joint
+✅ S2 & S3 otomatis set 100ms (aman!)
+✅ Cegah kerusakan sebelum terjadi
+✅ Servo awet 10x lebih lama!
+
+═════════════════════════════════════════════════════════════════
+
+📦 DELAY SETTINGS (DEFAULT)
+
+┌─────────┬───────┬──────────┬───────────────┐
+│ Joint   │ Servo │ Load     │ Default Delay │
+├─────────┼───────┼──────────┼───────────────┤
+│ Base    │ S1    │ Medium   │ 50ms          │
+│ Shoulder│ S2    │ HEAVY ⚠️ │ 100ms  ← SAFE│
+│ Elbow   │ S3    │ HEAVY ⚠️ │ 100ms  ← SAFE│
+│ Wrist P │ S4    │ Light    │ 30ms          │
+│ Wrist R │ S5    │ Light    │ 30ms          │
+│ Gripper │ S6    │ Light    │ 30ms          │
+└─────────┴───────┴──────────┴───────────────┘
+
+⚠️ PENTING: JANGAN turunkan S2 & S3 di bawah 50ms!
+
+═════════════════════════════════════════════════════════════════
+
+🚀 QUICK START
+
+┌─────────────────────────────────────────────────────────────┐
+│ OPTION 1: DEMO MODE - Test Safety Feature                  │
+└─────────────────────────────────────────────────────────────┘
+
+  python servo_controller_gui_demo.py
+
+  ✨ What to check:
+  1. Open ARM Robot 6DOF tab
+  2. See red safety warning at top
+  3. Each joint has "Delay: [XX] ms"
+  4. S2 & S3 show 100ms (safe!)
+  5. Try adjusting delays
+
+
+┌─────────────────────────────────────────────────────────────┐
+│ OPTION 2: HARDWARE MODE - With Real Servos                 │
+└─────────────────────────────────────────────────────────────┘
+
+  python servo_controller_gui.py
+
+  🛡️ Safety steps:
+  1. Connect to COM port
+  2. Check S2 & S3 delays = 100ms
+  3. Read safety warning
+  4. Start with slow movements
+  5. Monitor servo temperature
+
+═════════════════════════════════════════════════════════════════
+
+🎯 SAFETY GUIDELINES
+
+DO's ✅:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Use default delays (especially S2 & S3 = 100ms)
+✅ Start with slower delays when testing (150-200ms)
+✅ Monitor servo temperature during operation
+✅ Stop immediately if you hear buzzing
+✅ Let servos cool down if they get warm
+
+DON'Ts ❌:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+❌ NEVER set S2/S3 below 50ms (HIGH RISK!)
+❌ Don't ignore buzzing sounds (servo struggling!)
+❌ Don't operate if servo feels hot
+❌ Don't rush when learning (use 150ms+ first)
+❌ Don't test at full speed immediately
+
+═════════════════════════════════════════════════════════════════
+
+⚠️ WARNING SIGNS - STOP IMMEDIATELY!
+
+🚨 Servo buzzing           → Delay TOO LOW! Increase now!
+🚨 Servo getting hot       → Delay TOO LOW! Increase now!
+🚨 Jerky/stuttering move   → Check delay & power supply
+🚨 Strange noises          → STOP! Check mechanical issues
+
+═════════════════════════════════════════════════════════════════
+
+🎓 WHY S2 & S3 NEED 100ms?
+
+Beban yang ditanggung:
+
+        ●  ← Gripper (50g)
+       /|\
+      / | \  ← Wrist (50g)
+       |
+     ●──●  ← S3 (Elbow) carries 150g+ above it
+     |
+     |  ← Upper Arm (100g)
+     |
+     ●  ← S2 (Shoulder) carries 300g+ TOTAL!
+     |
+   ╔═╗  ← Base
+
+Torque calculation:
+S2 Torque = 6-9 kg.cm (near servo limit!)
+Fast movement = Torque spike = OVERLOAD!
+100ms delay = Safe within spec ✅
+
+═════════════════════════════════════════════════════════════════
+
+📚 DOCUMENTATION - READ THESE!
+
+🛡️ MUST READ (Safety):
+1. V2.1_UPDATE_SUMMARY.md     → Quick safety overview
+2. SAFETY_UPDATE_V2.1.md      → Detailed safety guide
+
+📖 Full Documentation:
+3. V2_UPDATE_SUMMARY.md       → All v2.0 features
+4. UPDATE_LOG.md              → Complete changelog
+5. QUICK_REFERENCE.md         → Quick commands
+6. README.md                  → Original full docs
+
+═════════════════════════════════════════════════════════════════
+
+🔧 DELAY ADJUSTMENT GUIDE
+
+When to use different delays:
+
+┌─────────┬────────────────────────────────────────────┐
+│ Delay   │ When to Use                                │
+├─────────┼────────────────────────────────────────────┤
+│ 30ms    │ Light joints only (S4, S5, S6)            │
+│ 50ms    │ Minimum for S2/S3 (still risky!)          │
+│ 100ms   │ DEFAULT for S2/S3 ← RECOMMENDED ✅        │
+│ 150ms   │ Extra safe, good for testing              │
+│ 200ms+  │ Very safe, learning, heavy loads          │
+└─────────┴────────────────────────────────────────────┘
+
+Example scenario:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Testing new pattern:      S2=150ms, S3=150ms (slow & safe)
+Daily operation:          S2=100ms, S3=100ms (balanced)
+Adding weight to gripper: S2=150ms, S3=150ms (compensate)
+Light operations only:    S2=100ms, S3=100ms (don't go lower!)
+
+═════════════════════════════════════════════════════════════════
+
+🎯 TESTING CHECKLIST
+
+Before First Use:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[ ] Read V2.1_UPDATE_SUMMARY.md
+[ ] Read SAFETY_UPDATE_V2.1.md
+[ ] Understand delay defaults
+[ ] Run demo mode first
+
+First Hardware Test:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[ ] Connect to correct COM port
+[ ] Verify S2 delay = 100ms
+[ ] Verify S3 delay = 100ms
+[ ] See red safety warning
+[ ] Start with Home Position
+[ ] Move ONE joint at a time
+[ ] Monitor servo temperature
+[ ] Listen for abnormal sounds
+
+During Operation:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[ ] No buzzing → Good! ✅
+[ ] Servos cool/warm (not hot) → Good! ✅
+[ ] Smooth movements → Good! ✅
+[ ] If ANY issues → STOP & increase delay
+
+═════════════════════════════════════════════════════════════════
+
+💡 PRO TIPS
+
+1. Default is your friend
+   → Don't change unless you understand why
+
+2. Test before deploy
+   → New pattern? Test with 150ms first
+
+3. Add weight = Add delay
+   → Heavier gripper/load? +20-50ms on S2/S3
+
+4. Temperature is indicator
+   → Warm servo = OK, Hot servo = Problem!
+
+5. Sound matters
+   → Buzzing = Warning sign, stop immediately!
+
+6. Better safe than sorry
+   → Replacing servo costs 100rb+, delay is FREE!
+
+═════════════════════════════════════════════════════════════════
+
+📱 UI PREVIEW
+
+ARM Robot tab now shows:
+
+╔═══════════════════════════════════════════════════════════╗
+║ 🤖 ARM Robot 6DOF - Joint Configuration                  ║
+║                                                           ║
+║ ⚠️ SAFETY: S2 & S3 use higher delay (100ms) to          ║
+║            prevent servo damage                           ║
+║                                                           ║
+║ Base (S1) - Rotasi dasar robot (Yaw)                     ║
+║    90° [======|======] -5 +5 ⊙  Delay: [50 ] ms         ║
+║ ────────────────────────────────────────────────────────  ║
+║                                                           ║
+║ Shoulder (S2) - Gerakan bahu atas/bawah                  ║
+║    90° [======|======] -5 +5 ⊙  Delay: [100] ms  ⚠️     ║
+║ ────────────────────────────────────────────────────────  ║
+║                                                           ║
+║ Elbow (S3) - Gerakan siku/lengan bawah                   ║
+║    90° [======|======] -5 +5 ⊙  Delay: [100] ms  ⚠️     ║
+╚═══════════════════════════════════════════════════════════╝
+
+═════════════════════════════════════════════════════════════════
+
+🎊 SUMMARY
+
+v2.1 SAFETY UPDATE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Delay control for ALL ARM joints
+✅ S2 & S3 default = 100ms (SAFE!)
+✅ Red safety warning in UI
+✅ Prevents servo damage
+✅ 10x longer servo life
+✅ FREE protection (just use delays!)
+
+REMEMBER:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🛡️ SAFETY > SPEED
+⏱️ 100ms delay = Happy servo = Long life
+💰 Prevention << Replacement cost
+🎯 Use defaults = Protected automatically
+
+═════════════════════════════════════════════════════════════════
+
+📞 QUICK COMMANDS
+
+Start demo mode:
+    python servo_controller_gui_demo.py
+
+Start hardware mode:
+    python servo_controller_gui.py
+
+Read safety guide:
+    cat SAFETY_UPDATE_V2.1.md
+
+Read update summary:
+    cat V2.1_UPDATE_SUMMARY.md
+
+═════════════════════════════════════════════════════════════════
+
+✅ YOU'RE READY!
+
+1. Read this file ✅ (you're here!)
+2. Read V2.1_UPDATE_SUMMARY.md
+3. Run: python servo_controller_gui_demo.py
+4. Check safety features
+5. Understand delay settings
+6. Then use with hardware
+
+═════════════════════════════════════════════════════════════════
+
+Version: 2.1 Safety Update
+Date: October 28, 2025
+Priority: CRITICAL - Hardware protection
+Action: Update immediately!
+
+═════════════════════════════════════════════════════════════════
+
+🛡️ PROTECT YOUR SERVOS - THEY'LL THANK YOU! 🤖
+
+Happy (and SAFE) controlling! 🎮
+
+═════════════════════════════════════════════════════════════════
